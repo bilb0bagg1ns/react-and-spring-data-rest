@@ -1,4 +1,3 @@
-# react-and-spring-data-rest
 ---
 tags: [rest,hateoas,data,react,security]
 projects: [spring-data-rest,spring-data-jpa,spring-hateoas,spring-security,spring-boot,]
