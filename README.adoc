@@ -41,6 +41,10 @@ Tutorial comes as 5 projects (basic, conditional, events, hypermedia, and securi
 Basic:
 Started with Basic. Which is a simple react application that uses Spring Data via CrudRepository to retrieve some data from an H2 database.
 
+app.js - in componentDidMount, retrieves all employees and assigns it to the employee array.
+
+app.js.single-employee (rename app.js to app.js.original, rename this file to app.js) - in here the this.state is modified to capture a single employee and in componentDidMount we set each of these states.  This because the response JSON structure for a single employee is different then that of all employees.
+
 Uses default Tomcat JDBC Connection Pool
 
 # Execution
@@ -51,7 +55,8 @@ Run npm run-script watch to put webpack into watch mode. It will regenerate bund
 ## URL
 1. http://localhost:8080/ - componentDidMount will invoke and render /api/employees
 2. To call the service api
-    - http://localhost:8080/api/employees
+    - To retrieve all employees (app.js) - http://localhost:8080/api/employees
+    - To retrieve an employee by id - http://localhost:8080/api/employees/1
 
 ## H2 Database  (Edit Records)
 1. To connect to H2 Database and edit/update records
@@ -70,3 +75,6 @@ Headers:
 	       "lastName": "Baggins", 
 	       "description": "burglar"
 	      }
+	      
+GET:
+URL: http://localhost:8080/api/employees/2
