@@ -31,7 +31,7 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 4. Hibernate
 5. Uses default Tomcat JDBC Connection Pool
 
-# Changes Made:
+# Changes Made
 1. In the Employee.java, removed @Data annotation which is tied to Lombok and replaced with setters/getters/toString().
 2. Lombok appeared to be causing issue at runtime with no data showing in the UI.
 
