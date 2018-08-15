@@ -21,3 +21,49 @@ include::events/README.adoc[leveloffset=+1]
 include::security/README.adoc[leveloffset=+1]
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+
+
+
+# Tools
+1. SpringBoot
+2. Spring Data (CrudRepository)
+3. H2 Database
+4. Hibernate
+5. Uses default Tomcat JDBC Connection Pool
+
+# Changes Made:
+1. In the Employee.java, removed @Data annotation which is tied to Lombok and replaced with setters/getters/toString().
+2. Lombok appeared to be causing issue at runtime with no data showing in the UI.
+
+# Summary
+Tutorial comes as 5 projects (basic, conditional, events, hypermedia, and security).
+
+Basic:
+Started with Basic. Which is a simple react application that uses Spring Data via CrudRepository to retrieve some data from an H2 database.
+
+Uses default Tomcat JDBC Connection Pool
+
+# Execution
+
+## URL
+1. http://localhost:8080/ - componentDidMount will invoke and render /api/employees
+2. To call the service api
+    - http://localhost:8080/api/employees
+
+## H2 Database  (Edit Records)
+1. To connect to H2 Database and edit/update records
+          - http://localhost:8080/h2-console
+          - use JDBC URL of jdbc:h2:mem:testdb
+          - no password needed
+
+## Postman - GET and POST additional records
+POST: 
+URL : http://localhost:8080/api/employees 
+Headers:
+	Key: Content-Type
+  Value: application/json
+  Body:
+	      {"firstName": "Bilbo", 
+	       "lastName": "Baggins", 
+	       "description": "burglar"
+	      }
