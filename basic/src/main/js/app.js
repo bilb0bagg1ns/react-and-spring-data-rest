@@ -16,38 +16,21 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-		               firstName: '',
-		               lastName: '',
-		               description: ''		               
-		             };
+		this.state = {employees: []};
 	}
 
+    
 	componentDidMount() {
-		client({method: 'GET', path: '/api/employees/2'}).done(response => {
-			this.setState({firstName: response.entity.firstName});
-			this.setState({lastName: response.entity.lastName});
-			this.setState({description: response.entity.description});
+		client({method: 'GET', path: '/api/employees/'}).done(response => {
+			this.setState({employees: response.entity._embedded.employees});
 			console.log (response);
+			console.log (this.state.employees);
 		});
 	}
 
 	render() {
 		return (
-			<table>
-				<tbody>
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Description</th>
-					</tr>
-					<tr>
-						<td>{this.state.firstName}</td>
-						<td>{this.state.lastName}</td>
-						<td>{this.state.description}</td>
-					</tr>
-				</tbody>
-			</table>
+			<EmployeeList employees={this.state.employees}/>
 		)
 	}
 }
@@ -56,7 +39,9 @@ class App extends React.Component {
 // tag::employee-list[]
 class EmployeeList extends React.Component{
 	render() {
-		var employee = this.props.employee
+		var employees = this.props.employees.map(employee =>
+			<Employee key={employee._links.self.href} employee={employee}/>
+		);
 		return (
 			<table>
 				<tbody>
@@ -65,11 +50,7 @@ class EmployeeList extends React.Component{
 						<th>Last Name</th>
 						<th>Description</th>
 					</tr>
-					<tr>
-						<td>{this.props.firstName}</td>
-						<td>{this.props.lastName}</td>
-						<td>{this.props.description}</td>
-					</tr>
+					{employees}
 				</tbody>
 			</table>
 		)
@@ -82,9 +63,9 @@ class Employee extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.firstName}</td>
-				<td>{this.props.lastName}</td>
-				<td>{this.props.description}</td>
+				<td>{this.props.employee.firstName}</td>
+				<td>{this.props.employee.lastName}</td>
+				<td>{this.props.employee.description}</td>
 			</tr>
 		)
 	}
